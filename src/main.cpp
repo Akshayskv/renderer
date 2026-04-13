@@ -1,6 +1,8 @@
 #include <iostream>
 
+#include <glad/gl.h>
 #include "window.h"
+
 
 int main() {
 

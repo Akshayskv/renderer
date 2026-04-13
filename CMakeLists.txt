@@ -32,6 +32,6 @@ endif()
 add_executable(renderer)
 
 file(GLOB src_files "src/*.cpp")
-target_sources(renderer PRIVATE ${src_files})
-target_include_directories(renderer PRIVATE "includes/")
+target_sources(renderer PRIVATE ${src_files} "external/glad/src/gl.c")
+target_include_directories(renderer PRIVATE "includes/" "external/glad/include/")
 target_link_libraries(renderer PRIVATE glfw)
