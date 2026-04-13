@@ -1,21 +1,13 @@
 #include <iostream>
-#include <GLFW/glfw3.h>
+
+#include "window.h"
 
 int main() {
 
-    glfwInit();
-    GLFWwindow* window;
-    window = glfwCreateWindow(800, 600, "Test", nullptr, nullptr);
-
-    glfwMakeContextCurrent(window);
-
-    while(!glfwWindowShouldClose(window)) {
-        glfwSwapBuffers(window);
-        glfwPollEvents();    
+    Window w(800, 800, "renderer");
+    while(w.isOpen()) {
+        w.update();
     }
-
-    glfwDestroyWindow(window);
-    glfwTerminate();
-
+    
     return 0;
 }
