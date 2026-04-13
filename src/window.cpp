@@ -10,8 +10,15 @@ Window::Window(int width, int height, const std::string& name) : m_width(width),
             std::cout << "glfw init error" << std::endl;
     }
 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
     m_handle = glfwCreateWindow(m_width, m_height, m_name.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(m_handle);
+    int version = gladLoadGL(glfwGetProcAddress);
+    if(version == 0)
+        std::cout << "Failed to initialize OpenGL" << std::endl;
     s_instCount++;
 }
 

@@ -2,3 +2,5 @@ build/
 *.bin
 .vscode/
 libs/
+run.sh
+configure.sh
