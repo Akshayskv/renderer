@@ -15,12 +15,12 @@ struct VertexAttributes {
 template <typename T>
 struct VertexLayout {
     static std::vector<VertexAttributes> get() {
-
+        return {};
     }
 };
 
 struct VertexB {
-   float vertex[3]; 
+   float vertex[3];
 };
 
 template <>
@@ -43,9 +43,9 @@ class VertexBuffer {
 public:
     VertexBuffer(const std::vector<T>& data) {
         glGenBuffers(1, &m_buffer);
-        glBindBuffer(GL_ARRAY_BUFFER, m_buffer);
+        bind();
         glBufferData(GL_ARRAY_BUFFER, sizeof(T) * data.size(), data.data(), GL_STATIC_DRAW);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        unbind();
     }
 
     ~VertexBuffer() {

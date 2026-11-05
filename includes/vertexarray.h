@@ -3,8 +3,6 @@
 
 #include <glad/gl.h>
 
-#include <vector>
-
 #include "indexbuffer.h"
 #include "vertexbuffer.h"
 
@@ -33,11 +31,25 @@ public:
         auto layout = VertexLayout<T>::get();
         for(int i = 0; i < layout.size(); i++) {
             glVertexAttribPointer(i, layout[i].count, layout[i].type, layout[i].normalized, sizeof(T), layout[i].offset);
+            glEnableVertexAttribArray(i);
         }
 
         unbind();
         vertexbuffer.unbind();
         indexbuffer.unbind();
+    }
+
+    template <typename T>
+    void addlayout(const VertexBuffer<T>& vertexbuffer) {
+        bind();
+        vertexbuffer.bind();
+        auto layout = VertexLayout<T>::get();
+        for(int i = 0; i < layout.size(); i++) {
+            glVertexAttribPointer(i, layout[i].count, layout[i].type, layout[i].normalized, sizeof(T), reinterpret_cast<const void*>(static_cast<uintptr_t>(layout[i].offset)));
+            glEnableVertexAttribArray(i);
+        }
+        unbind();
+        vertexbuffer.unbind();
     }
     
 private:
