@@ -3,8 +3,7 @@
 
 #include <string>
 
-#include <glad/gl.h>
-#include <GLFW/glfw3.h>
+struct GLFWwindow;
 
 class Window {
 public:
@@ -14,6 +13,8 @@ public:
     Window& operator=(const Window&) = delete;
     bool isOpen() const;
     void update();
+private:
+    static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 private:
     GLFWwindow* m_handle;
     int m_width;
