@@ -2,6 +2,7 @@
 #define VERTEX_ARRAY_H
 
 #include <glad/gl.h>
+#include <cstdint>
 
 #include "indexbuffer.h"
 #include "vertexbuffer.h"
@@ -53,7 +54,7 @@ public:
     }
     
 private:
-    uint32_t m_vertexarray;
+    std::uint32_t m_vertexarray;
 };
 
 #endif

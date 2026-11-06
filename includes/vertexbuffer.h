@@ -2,8 +2,8 @@
 #define VERTEXBUFFER_H
 
 #include <glad/gl.h>
-
 #include <vector>
+#include <cstdint>
 
 struct VertexAttributes { 
     unsigned int count;
@@ -19,15 +19,32 @@ struct VertexLayout {
     }
 };
 
-struct VertexB {
-   float vertex[3];
+struct TexturedVertex {
+    float vertex[3];
+    float texCoords[2];
+};
+
+template<>
+struct VertexLayout<TexturedVertex> {
+    static std::vector<VertexAttributes> get() {
+        return {
+            {3, 0, true, GL_FLOAT},
+            {2, offsetof(TexturedVertex, texCoords), true, GL_FLOAT}
+        };
+    }
+};
+
+struct ColoredVertex {
+    float vertex[3];
+    float color[3];
 };
 
 template <>
-struct VertexLayout<VertexB> {
+struct VertexLayout<ColoredVertex> {
     static std::vector<VertexAttributes> get() {
         return {
-            {3, 0, true, GL_FLOAT}
+            {3, 0, true, GL_FLOAT},
+            {3, offsetof(ColoredVertex, color), true, GL_FLOAT}
         };
     }
 };
@@ -62,7 +79,7 @@ public:
     }
 
 private:
-    uint32_t m_buffer;
+    std::uint32_t m_buffer;
 };
 
 #endif

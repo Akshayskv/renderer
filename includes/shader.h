@@ -1,8 +1,8 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <glad/gl.h>
-#include <string>
+#include <string_view>
+#include <cstdint>
 
 class Shader {
 public:
@@ -19,7 +19,7 @@ private:
     std::string parseFile(std::string_view filepath);
 private:
 
-    uint32_t m_shader; 
+    std::uint32_t m_shader; 
 };
 
 #endif

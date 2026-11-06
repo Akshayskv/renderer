@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <glad/gl.h>
 #include "shader.h"
 
 Shader::Shader(std::string_view vertfilePath, std::string_view fragfilePath) {
