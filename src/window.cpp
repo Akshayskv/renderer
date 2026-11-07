@@ -47,12 +47,24 @@ void Window::framebufferResizeCallback(GLFWwindow* window, int width, int height
     glViewport(0, 0, width, height);
 }
 
+bool Window::isKeyPressed(KeyCodes code) const {
+    return glfwGetKey(m_handle, (int)code) == GLFW_PRESS;
+}
+
 bool Window::isOpen() const {
     if(m_handle == nullptr) {
         std::cout << "Error: No valid window was created" << std::endl;
         return false;
     }
     return !glfwWindowShouldClose(m_handle);
+}
+
+int Window::getWidth() const {
+    return m_width;
+}
+
+int Window::getHeight() const {
+    return m_height;
 }
 
 void Window::update() {

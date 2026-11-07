@@ -3,6 +3,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <glad/gl.h>
+#include <glm/gtc/type_ptr.hpp>
 #include "shader.h"
 
 Shader::Shader(std::string_view vertfilePath, std::string_view fragfilePath) {
@@ -27,6 +28,14 @@ void Shader::bind() const {
 
 void Shader::unbind() const {
     glUseProgram(0);
+}
+
+int Shader::getUniformLocation(std::string_view name) {
+    return glGetUniformLocation(m_shader, std::string(name).c_str());
+}
+
+void Shader::setUniformMatrix4f(int location, glm::mat4 value) {
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 }
 
 void Shader::compileProgram(std::string_view vertfilePath, std::string_view fragfilePath, std::string_view geofilePath) {

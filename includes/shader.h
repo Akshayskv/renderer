@@ -3,6 +3,7 @@
 
 #include <string_view>
 #include <cstdint>
+#include <glm/mat4x4.hpp>
 
 class Shader {
 public:
@@ -12,6 +13,8 @@ public:
     Shader& operator=(const Shader&) = delete;
     ~Shader();
 public:
+    int getUniformLocation(std::string_view name);
+    void setUniformMatrix4f(int location, glm::mat4 value);
     void bind() const;
     void unbind() const;
 private:

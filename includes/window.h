@@ -5,6 +5,13 @@
 
 struct GLFWwindow;
 
+enum class KeyCodes {
+    KEY_W = 87,
+    KEY_A = 65,
+    KEY_S = 83,
+    KEY_D = 68
+};
+
 class Window {
 public:
     Window(int width, int height, const std::string& name);
@@ -12,7 +19,10 @@ public:
     Window(const Window&) = delete;
     Window& operator=(const Window&) = delete;
     bool isOpen() const;
+    bool isKeyPressed(KeyCodes code) const;
     void update();
+    int getWidth() const;
+    int getHeight() const;
 private:
     static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 private:

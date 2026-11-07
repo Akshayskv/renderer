@@ -31,7 +31,7 @@ public:
         indexbuffer.bind();
         auto layout = VertexLayout<T>::get();
         for(int i = 0; i < layout.size(); i++) {
-            glVertexAttribPointer(i, layout[i].count, layout[i].type, layout[i].normalized, sizeof(T), layout[i].offset);
+            glVertexAttribPointer(i, layout[i].count, layout[i].type, layout[i].normalized, sizeof(T), reinterpret_cast<const void*>(static_cast<uintptr_t>(layout[i].offset)));
             glEnableVertexAttribArray(i);
         }
 

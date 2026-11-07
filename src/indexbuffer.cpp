@@ -1,6 +1,7 @@
 #include "indexbuffer.h"
 
 IndexBuffer::IndexBuffer(const std::vector<unsigned int>& data) {
+    m_count = (int)data.size();
     glGenBuffers(1, &m_buffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_buffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * data.size(), data.data(), GL_STATIC_DRAW);
